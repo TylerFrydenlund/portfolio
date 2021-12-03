@@ -21,13 +21,11 @@ public class SharkBiz implements Microservice {
 
 	@Override
 	public Map<String, Object> configDefaults() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<Handler<?, ?>> handlers() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
