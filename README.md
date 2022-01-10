@@ -13,17 +13,16 @@ My name is Tyler Frydenlund. Im 19 from Thornton, CO and I have been a Softwear 
 
 ## Familar technologies
 - [Java](https://www.java.com/en/download/help/whatis_java.html) developer (Since 2015)
+- [Java Script](https://www.javascript.com/) client side web page behavior (Since 2022)
+- [HTML 5](https://en.wikipedia.org/wiki/HTML5) world wide web mark up language (Since 2022)
+- [CSS](https://en.wikipedia.org/wiki/CSS) style sheet language (Since 2022)
+- [XML](https://www.w3.org/XML/) extensible markup language (Since 2018)
 - [Docker](https://www.docker.com/resources/what-container) image & container developer (Since 2020)
 - [Mongo DB](https://www.mongodb.com/) database developer (Since 2020)
 - [MySQL](https://www.mysql.com/why-mysql/) database developer (Since 2017)
-- [Microserverice](https://microservices.io/) developer (Since 2020)
 - [GitHub](https://github.com/about) commiter (Since 2018)
 - [Apache Maven](https://maven.apache.org/what-is-maven.html) java application build tools (Since 2018)
-- [XML](https://www.w3.org/XML/) extensible markup language (Since 2018)
 - [YMAL](https://en.wikipedia.org/wiki/YAML) data serialization language (Since 2015)
-- [HTML 5](https://en.wikipedia.org/wiki/HTML5) world wide web mark up language (Since 2022)
-- [Java Script](https://www.javascript.com/) client side web page behavior (Since 2022)
-- [CSS](https://en.wikipedia.org/wiki/CSS) style sheet language (Since 2022)
 - [JSON](https://www.json.org/json-en.html) data-interchange format (Since 2018)
 
 ## Projects
