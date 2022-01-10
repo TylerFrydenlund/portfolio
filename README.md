@@ -27,5 +27,5 @@ My name is Tyler Frydenlund. Im 19 from Thornton, CO and I have been a Softwear 
 - [JSON](https://www.json.org/json-en.html) data-interchange format (Since 2018)
 
 ## Projects
-- [Dispatch API](https://github.com/StyxusStudios/Dispatch-API) for building Minecraft user interfaces (Lead Developer)
+- [Dispatch API](https://github.com/Driftverse/Dispatch-API) for building Minecraft user interfaces (Lead Developer)
 - Driftverse Minecraft Server (since discontinued)
