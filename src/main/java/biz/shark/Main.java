@@ -3,6 +3,7 @@ package biz.shark;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+import biz.shark.app.SharkBiz;
 import biz.shark.impl.MicroserviceImpl;
 
 public class Main implements Runnable {

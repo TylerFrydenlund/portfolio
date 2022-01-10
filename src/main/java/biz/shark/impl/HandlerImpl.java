@@ -46,14 +46,22 @@ final class HandlerImpl<I, O> implements Handler<I, O> {
 		Validate.notNull(handler, "Null handlers can not be implemented");
 		this.original = handler;
 
-		this.path = handler.getPath();
+		this.path = original.path();
+		Validate.notEmpty(path, "This handler has a null or empty path. This is not allowed");
 
-		this.method = handler.getMethod();
+		this.method = original.method();
+		Validate.notNull(method, "This handler has a null HttpMethod type. This is not allowed");
 
-		this.responseAdapter = handler.getResponseAdapter(null);
-		this.requestAdapter = handler.getRequestAdapter();
+		this.requestAdapter = original.requestAdapter();
+		Validate.notNull(requestAdapter, "This handler has a null Request Adapter Class. This is not allowed");
 
-		this.customAdapters = handler.getCustomAdapters();
+		this.responseAdapter = original.responseAdapter();
+
+		List<Object> adapters = original.customAdapters();
+
+		this.customAdapters = adapters == null ? List.of() : Collections.unmodifiableList(adapters);
+
+		Validate.noNullElements(adapters, "This handler has a null Custom Handler. This is not allowed");
 
 		this.moshi = Util.buildMoshi(customAdapters);
 
@@ -61,8 +69,21 @@ final class HandlerImpl<I, O> implements Handler<I, O> {
 
 		this.adapter = adapter;
 
-		this.quantifiers.addAll(0, handler.getQuantifiers());
-		this.rules.addAll(handler.getRules());
+		List<Quantifier> quantifiers = quantifiers();
+
+		quantifiers = quantifiers == null ? List.of() : Collections.unmodifiableList(quantifiers);
+
+		Validate.noNullElements(quantifiers, "This handler has a null Quantifier. This is not allowed");
+
+		this.quantifiers.addAll(0, quantifiers);
+
+		List<Rule<?>> rules = rules();
+
+		rules = rules == null ? List.of() : Collections.unmodifiableList(rules);
+
+		Validate.noNullElements(rules, "This handler has a null Rule. This is not allowed");
+
+		this.rules.addAll(rules);
 
 		this.rules.forEach(r -> mappedRules.put(r.annotation(), r));
 
@@ -81,6 +102,13 @@ final class HandlerImpl<I, O> implements Handler<I, O> {
 	@Override
 	public Class<? extends I> requestAdapter() {
 		return requestAdapter;
+	}
+
+	Class<? extends I> safeRequestAdapter() {
+		Class<? extends I> clazz = requestAdapter();
+
+		return clazz;
+
 	}
 
 	@Override
@@ -121,7 +149,7 @@ final class HandlerImpl<I, O> implements Handler<I, O> {
 
 			O response = handle(exchange, request);
 
-			Class<? extends O> responseAdapter = getResponseAdapter((Class<? extends O>) response.getClass());
+			Class<? extends O> responseAdapter = (Class<? extends O>) response.getClass();
 
 			@SuppressWarnings({ "rawtypes" })
 			JsonAdapter adapter = moshi.adapter(responseAdapter);

@@ -1,4 +1,4 @@
-package biz.shark;
+package biz.shark.app;
 
 import java.util.List;
 import java.util.Map;
@@ -21,7 +21,7 @@ public class SharkBiz implements Microservice {
 
 	@Override
 	public Map<String, Object> configDefaults() {
-		return null;
+		return Map.of();
 	}
 
 	@Override

@@ -36,11 +36,11 @@ class ImplUtil {
 
 			HandlerImpl<?, ?> handler = new HandlerImpl<>(h);
 
-			groups.putIfAbsent(handler.getPath(), new HandlerGroup());
+			groups.putIfAbsent(handler.path(), new HandlerGroup());
 
-			HandlerGroup group = groups.get(handler.getPath());
+			HandlerGroup group = groups.get(handler.path());
 
-			group.methods.put(handler.getMethod(), handler);
+			group.methods.put(handler.method(), handler);
 		}
 
 		return groups;
