@@ -12,7 +12,7 @@ public class Main implements Runnable {
 
 	private static final Main INSTANCE = new Main(); // Used for the shutdown hook
 
-	private static final SharkBiz sharkBiz = new SharkBiz(); // Our ONLY instance of the service
+	private static final SharkBiz sharkBiz = new SharkBiz(8080); // Our ONLY instance of the service
 	private static MicroserviceImpl microservice; // The implementation of the service
 
 	// No where else should or needs this
@@ -29,7 +29,7 @@ public class Main implements Runnable {
 	public static void main(String[] args) throws IOException {
 
 		logStart();
-		
+
 		LOGGER.info("Adding shut downhook");
 		// Create a shut down hook to safely handle when the
 		// system is stopped
@@ -67,6 +67,10 @@ public class Main implements Runnable {
 		LOGGER.info("Stopping Shark Biz");
 		microservice.stop(1);
 		LOGGER.info("Stopped...");
+	}
+
+	public static Logger logger() {
+		return LOGGER;
 	}
 
 }

@@ -9,12 +9,12 @@ import biz.shark.api.Handler;
 import biz.shark.api.HttpMethod;
 import biz.shark.api.Quantifier;
 import biz.shark.api.rule.Rule;
-import biz.shark.app.employee.Employee;
+import biz.shark.app.employee.handlers.EmployeeDelete.Result;
 
-public class Put implements Handler<Employee, biz.shark.app.employee.handlers.Put.Result> {
+public class EmployeeDelete implements Handler<Integer, Result> {
 
 	enum Result {
-		SUCESS, ALREADY_EXISTS;
+		NOT_FOUND, SUCESS, FAIL;
 	}
 
 	@Override
@@ -24,12 +24,12 @@ public class Put implements Handler<Employee, biz.shark.app.employee.handlers.Pu
 
 	@Override
 	public HttpMethod method() {
-		return HttpMethod.PUT;
+		return HttpMethod.DELETE;
 	}
 
 	@Override
-	public Class<? extends Employee> requestAdapter() {
-		return Employee.class;
+	public Class<? extends Integer> requestAdapter() {
+		return Integer.class;
 	}
 
 	@Override
@@ -53,11 +53,26 @@ public class Put implements Handler<Employee, biz.shark.app.employee.handlers.Pu
 	}
 
 	@Override
-	public Result handle(HttpExchange exchange, Employee employee) throws IOException {
+	public Result handle(HttpExchange exchange, Integer employee) throws IOException {
+
 		
+		if(!find(employee)) {
+			return Result.NOT_FOUND;
+		}
 		
+		if(remove(employee)) {
+			return Result.SUCESS;
+		}
 		
-		return null;
+		return Result.FAIL;
+	}
+
+	boolean find(Integer employee) {
+		return false;
+	}
+	
+	boolean remove(Integer employee) {
+		return false;
 	}
 
 }

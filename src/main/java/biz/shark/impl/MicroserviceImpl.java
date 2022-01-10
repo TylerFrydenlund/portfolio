@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.apache.commons.lang3.Validate;
@@ -69,6 +70,10 @@ public final class MicroserviceImpl implements Microservice {
 
 	}
 
+	public void setLogLevel(Level level) {
+		logger.setLevel(level);
+	}
+	
 	public Map<String, HandlerGroup> getGroups() {
 		return groups;
 	}

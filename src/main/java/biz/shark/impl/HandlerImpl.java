@@ -142,6 +142,10 @@ final class HandlerImpl<I, O> implements Handler<I, O> {
 
 		String json = new String(in.readAllBytes());
 
+		if (json.isBlank()) {
+			json = "\"\"";//double open and close qoutes
+		}
+
 		try {
 			I request = adapter.fromJson(json);
 

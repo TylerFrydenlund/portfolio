@@ -67,14 +67,15 @@ public class Util {
 
 		logger.info("Loading microservice defaults...");
 
+		Map<String, Object> serviceDefaults = new HashMap<>(SERVICE_DEFAULTS);
 		Map<String, Object> defaults = microservice.configDefaults() == null ? new HashMap<>()
 				: new HashMap<>(microservice.configDefaults());
 
-		defaults.putAll(SERVICE_DEFAULTS);
+		serviceDefaults.putAll(defaults);
 
 		logger.info("Loading defaults complete.");
 
-		return defaults;
+		return serviceDefaults;
 
 	}
 
