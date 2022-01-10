@@ -3,8 +3,9 @@ My name is Tyler Frydenlund. Im 19 from Thornton, CO and I have been a Softwear 
 
 ## Education
 - Highschool Graduate
+- The internet
 
-## Development practices I use or have ssed
+## Development practices I use or have used
 - Continuous Integration
 - Continuous Delivery
 - Test Driven Development
@@ -20,8 +21,11 @@ My name is Tyler Frydenlund. Im 19 from Thornton, CO and I have been a Softwear 
 - [Apache Maven](https://maven.apache.org/what-is-maven.html) java application build tools (Since 2018)
 - [XML](https://www.w3.org/XML/) extensible markup language (Since 2018)
 - [YMAL](https://en.wikipedia.org/wiki/YAML) data serialization language (Since 2015)
+- [HTML 5](https://en.wikipedia.org/wiki/HTML5) world wide web mark up language (Since 2022)
+- [Java Script](https://www.javascript.com/) client side web page behavior (Since 2022)
+- [CSS](https://en.wikipedia.org/wiki/CSS) style sheet language (Since 2022)
 - [JSON](https://www.json.org/json-en.html) data-interchange format (Since 2018)
 
 ## Projects
 - [Dispatch API](https://github.com/StyxusStudios/Dispatch-API) for building Minecraft user interfaces (Lead Developer)
-- 
+- Driftverse Minecraft Server (since discontinued)
