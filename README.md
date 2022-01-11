@@ -11,16 +11,16 @@ My name is Tyler Frydenlund. Im 19 from Thornton, CO and I have been a Softwear 
 - Agile Development
 
 ## Familar technologies
-- [Java](https://www.java.com/en/download/help/whatis_java.html) developer (Since 2015)
-- [Java Script](https://www.javascript.com/) client side web page behavior (Since December 2021)
-- [HTML 5](https://en.wikipedia.org/wiki/HTML5) world wide web mark up language (Since December 2021)
-- [CSS](https://en.wikipedia.org/wiki/CSS) style sheet language (Since December 2021)
-- [XML](https://www.w3.org/XML/) extensible markup language (Since 2018)
-- [Docker](https://www.docker.com/resources/what-container) image & container developer (Since 2020)
-- [Mongo DB](https://www.mongodb.com/) database developer (Since 2020)
-- [MySQL](https://www.mysql.com/why-mysql/) database developer (Since 2017)
-- [GitHub](https://github.com/about) commiter (Since 2018)
-- [Apache Maven](https://maven.apache.org/what-is-maven.html) java application build tools (Since 2018)
+- [Java](https://www.java.com/en/download/help/whatis_java.html (Since 2015)
+- [Java Script](https://www.javascript.com/) (Since December 2021)
+- [HTML 5](https://en.wikipedia.org/wiki/HTML5) (Since December 2021)
+- [CSS](https://en.wikipedia.org/wiki/CSS) (Since December 2021)
+- [XML](https://www.w3.org/XML/) (Since 2018)
+- [Docker](https://www.docker.com/resources/what-container) (Since 2020)
+- [Mongo DB](https://www.mongodb.com/) (Since 2020)
+- [MySQL](https://www.mysql.com/why-mysql/) (Since 2017)
+- [GitHub](https://github.com/about) (Since 2018)
+- [Apache Maven](https://maven.apache.org/what-is-maven.html) (Since 2018)
 
 ## Projects
 - [Dispatch API](https://github.com/Driftverse/Dispatch-API) for building Minecraft user interfaces (Lead Developer)
