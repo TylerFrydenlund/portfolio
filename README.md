@@ -11,7 +11,7 @@ My name is Tyler Frydenlund. Im 19 from Thornton, Colorado and I have been a Sof
 - Agile Development
 
 ## Familar technologies
-- [Java](https://www.java.com/en/download/help/whatis_java.html (Since 2015)
+- [Java](https://www.java.com/en/download/help/whatis_java.html) (Since 2015)
 - [Java Script](https://www.javascript.com/) (Since December 2021)
 - [HTML 5](https://en.wikipedia.org/wiki/HTML5) (Since December 2021)
 - [CSS](https://en.wikipedia.org/wiki/CSS) (Since December 2021)
