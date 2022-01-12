@@ -12,7 +12,6 @@ import com.squareup.moshi.Moshi;
 
 import biz.shark.app.Position;
 import biz.shark.app.SharkBiz;
-import biz.shark.app.employee.Employee;
 import biz.shark.app.employee.NewEmployee;
 import biz.shark.impl.MicroserviceImpl;
 import jodd.http.HttpRequest;

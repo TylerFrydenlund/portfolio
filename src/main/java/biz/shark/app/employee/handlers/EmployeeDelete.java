@@ -55,22 +55,21 @@ public class EmployeeDelete implements Handler<Integer, Result> {
 	@Override
 	public Result handle(HttpExchange exchange, Integer employee) throws IOException {
 
-		
-		if(!find(employee)) {
+		if (!find(employee)) {
 			return Result.NOT_FOUND;
 		}
-		
-		if(remove(employee)) {
+
+		if (remove(employee)) {
 			return Result.SUCESS;
 		}
-		
+
 		return Result.FAIL;
 	}
 
 	boolean find(Integer employee) {
 		return false;
 	}
-	
+
 	boolean remove(Integer employee) {
 		return false;
 	}
