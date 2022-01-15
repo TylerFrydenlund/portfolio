@@ -22,6 +22,13 @@ import biz.shark.Util;
 import biz.shark.api.Handler;
 import biz.shark.api.Microservice;
 
+/**
+ * The bread an butter of the backend system. Handles registering HTTP Handlers, system
+ * configuration.
+ * 
+ * @author Tyler Frydenlund
+ *
+ */
 public final class MicroserviceImpl implements Microservice {
 
 	private final Map<String, HandlerGroup> groups;
@@ -30,6 +37,7 @@ public final class MicroserviceImpl implements Microservice {
 
 	private final String name;
 	private final Logger logger;
+	// The defaults in for the config
 	private final Map<String, Object> defaults;
 	private final List<Handler<?, ?>> handlers;
 
@@ -73,7 +81,7 @@ public final class MicroserviceImpl implements Microservice {
 	public void setLogLevel(Level level) {
 		logger.setLevel(level);
 	}
-	
+
 	public Map<String, HandlerGroup> getGroups() {
 		return groups;
 	}

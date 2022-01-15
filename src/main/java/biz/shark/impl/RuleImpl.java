@@ -9,6 +9,15 @@ import biz.shark.api.rule.Rule;
 import biz.shark.exceptions.MessageProviderException;
 import biz.shark.exceptions.RuleFollowException;
 
+/**
+ * An system class used for handling exceptions from within rules. If the rule
+ * fails to check or provided messages, we will alert the client something went
+ * wrong on the servers end and we could not process their request
+ * 
+ * @author Tyler Frydenlund
+ *
+ * @param <A> An annotation that the rule will look for
+ */
 final class RuleImpl<A extends Annotation> implements Rule<A> {
 
 	private final Rule<A> original;
@@ -18,19 +27,9 @@ final class RuleImpl<A extends Annotation> implements Rule<A> {
 		Validate.notNull(rule, "Null rules can not be implemented");
 
 		this.original = rule;
-		this.annotation = getAnnotation();
+		this.annotation = annotation();
 
 		Validate.notNull(annotation, "A rule can not have a null annotation");
-	}
-
-	Class<A> getAnnotation() {
-
-		Class<A> annotation = annotation();
-
-		Validate.notNull(annotation, "A rules annotation may not be null");
-
-		return annotation;
-
 	}
 
 	public Rule<A> getOriginal() {
@@ -50,6 +49,7 @@ final class RuleImpl<A extends Annotation> implements Rule<A> {
 
 			t.printStackTrace();
 
+			// False for the rule being missing
 			throw new RuleFollowException(false, name);
 		}
 	}
@@ -61,7 +61,7 @@ final class RuleImpl<A extends Annotation> implements Rule<A> {
 		} catch (Throwable t) {
 
 			t.printStackTrace();
-
+			// True for the rule being present
 			throw new RuleFollowException(true, name);
 		}
 	}
@@ -74,7 +74,7 @@ final class RuleImpl<A extends Annotation> implements Rule<A> {
 
 		} catch (Throwable t) {
 			t.printStackTrace();
-
+			// Tells the client they did something wrong but our end couldnt properally tell them what was wrong
 			throw new MessageProviderException(
 					"Failed to provided proper exception message while rule was missing for: {field=" + name + "}");
 		}
@@ -86,6 +86,7 @@ final class RuleImpl<A extends Annotation> implements Rule<A> {
 			original.throwExceptionPresent(rule, field, name, value, quantity);
 		} catch (Throwable t) {
 			t.printStackTrace();
+			// Tells the client they did something wrong but our end couldnt properally tell them what was wrong
 			throw new MessageProviderException(
 					"Failed to provided proper exception message while rule was present for: {field=" + name + "}");
 		}

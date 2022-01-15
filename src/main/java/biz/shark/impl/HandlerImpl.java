@@ -22,6 +22,13 @@ import biz.shark.api.HttpMethod;
 import biz.shark.api.Quantifier;
 import biz.shark.api.rule.Rule;
 
+/**
+ * 
+ * @author Tyler Frydenlund
+ *
+ * @param <I> The Input class to serialize from JSON Input
+ * @param <O> The Output class to deserialize into JSON Output
+ */
 final class HandlerImpl<I, O> implements Handler<I, O> {
 
 	private final Handler<I, O> original;
@@ -47,13 +54,10 @@ final class HandlerImpl<I, O> implements Handler<I, O> {
 		this.original = handler;
 
 		this.path = original.path();
-		Validate.notEmpty(path, "This handler has a null or empty path. This is not allowed");
 
 		this.method = original.method();
-		Validate.notNull(method, "This handler has a null HttpMethod type. This is not allowed");
 
 		this.requestAdapter = original.requestAdapter();
-		Validate.notNull(requestAdapter, "This handler has a null Request Adapter Class. This is not allowed");
 
 		this.responseAdapter = original.responseAdapter();
 
@@ -61,31 +65,45 @@ final class HandlerImpl<I, O> implements Handler<I, O> {
 
 		this.customAdapters = adapters == null ? List.of() : Collections.unmodifiableList(adapters);
 
-		Validate.noNullElements(adapters, "This handler has a null Custom Handler. This is not allowed");
-
 		this.moshi = Util.buildMoshi(customAdapters);
 
 		JsonAdapter<? extends I> adapter = moshi.adapter(requestAdapter()).lenient();
 
 		this.adapter = adapter;
+		
+		addQuantifiers();
+		mapRules();
+		
+		// Will check for nulls
+		validate();
+	}
 
-		List<Quantifier> quantifiers = quantifiers();
-
-		quantifiers = quantifiers == null ? List.of() : Collections.unmodifiableList(quantifiers);
-
-		Validate.noNullElements(quantifiers, "This handler has a null Quantifier. This is not allowed");
-
-		this.quantifiers.addAll(0, quantifiers);
-
+	void mapRules() {
 		List<Rule<?>> rules = rules();
 
 		rules = rules == null ? List.of() : Collections.unmodifiableList(rules);
 
-		Validate.noNullElements(rules, "This handler has a null Rule. This is not allowed");
-
 		this.rules.addAll(rules);
 
 		this.rules.forEach(r -> mappedRules.put(r.annotation(), r));
+	}
+
+	void addQuantifiers() {
+		List<Quantifier> quantifiers = quantifiers();
+
+		quantifiers = quantifiers == null ? List.of() : Collections.unmodifiableList(quantifiers);
+
+		this.quantifiers.addAll(0, quantifiers);
+	}
+
+	void validate() {
+
+		Validate.notEmpty(path, "This handler has a null or empty path. This is not allowed");
+		Validate.notNull(method, "This handler has a null HttpMethod type. This is not allowed");
+		Validate.notNull(requestAdapter, "This handler has a null Request Adapter Class. This is not allowed");
+		Validate.noNullElements(customAdapters, "This handler has a null Custom Handler. This is not allowed");
+		Validate.noNullElements(quantifiers, "This handler has a null Quantifier. This is not allowed");
+		Validate.noNullElements(rules, "This handler has a null Rule. This is not allowed");
 
 	}
 
@@ -104,13 +122,6 @@ final class HandlerImpl<I, O> implements Handler<I, O> {
 		return requestAdapter;
 	}
 
-	Class<? extends I> safeRequestAdapter() {
-		Class<? extends I> clazz = requestAdapter();
-
-		return clazz;
-
-	}
-
 	@Override
 	public Class<? extends O> responseAdapter() {
 		return responseAdapter;
@@ -123,12 +134,12 @@ final class HandlerImpl<I, O> implements Handler<I, O> {
 
 	@Override
 	public List<Quantifier> quantifiers() {
-		return Collections.unmodifiableList(quantifiers);
+		return Collections.unmodifiableList(quantifiers); // No Modifications should be made
 	}
 
 	@Override
 	public List<Rule<?>> rules() {
-		return Collections.unmodifiableList(rules);
+		return Collections.unmodifiableList(rules); // No modifications should be made
 	}
 
 	@Override
@@ -136,44 +147,65 @@ final class HandlerImpl<I, O> implements Handler<I, O> {
 		return original.handle(exchange, requestBody);
 	}
 
-	@SuppressWarnings("unchecked")
 	public void handle(HttpExchange exchange) throws IOException {
 		InputStream in = exchange.getRequestBody();
 
 		String json = new String(in.readAllBytes());
 
+		// Prevents a json malformed exception from occuring if nothing is submited
 		if (json.isBlank()) {
-			json = "\"\"";//double open and close qoutes
+			json = "\"\"";// double open and close qoutes
 		}
 
 		try {
-			I request = adapter.fromJson(json);
-
-			ImplUtil.checkRules(mappedRules, quantifiers, request);
-
-			O response = handle(exchange, request);
-
-			Class<? extends O> responseAdapter = (Class<? extends O>) response.getClass();
-
-			@SuppressWarnings({ "rawtypes" })
-			JsonAdapter adapter = moshi.adapter(responseAdapter);
-
-			json = adapter.toJson(response);
-
-			Util.writeResponse(exchange, 200, json);
-
+			handle(exchange, json);
 		} catch (JsonDataException e) {
-			String report = Util.errorReport(e);
-			Util.writeResponse(exchange, 400, report);
-
+			// Is thrown because a field does not follow is specified rules
+			jsonDataException(exchange, e);
 		} catch (Throwable e) {
-			e.printStackTrace();
-
-			String report = Util.errorReport(new Exception("Internal server exception"));
-
-			Util.writeResponse(exchange, 500, report);
+			// If this is happens, the client just needs to know it was on our end
+			internalServerException(exchange, e);
 		}
 
 	}
 
+	@SuppressWarnings("unchecked")
+	void handle(HttpExchange exchange, String json)
+			throws IOException, IllegalArgumentException, IllegalAccessException {
+		I request = adapter.fromJson(json);
+
+		// Will throw a JSON Data Exception if the JSON values do not meet the specified
+		// Rules
+		ImplUtil.checkRules(mappedRules, quantifiers, request);
+
+		// Calles the implemented Handlers request method
+		O response = handle(exchange, request);
+
+		Class<? extends O> responseAdapter = responseAdapter();
+
+		// To JSON Start
+		@SuppressWarnings({ "rawtypes" })
+		JsonAdapter adapter = moshi.adapter(responseAdapter);
+
+		json = adapter.toJson(response);
+
+		// To JSON End
+
+		Util.writeResponse(exchange, 200, json);
+	}
+
+	void internalServerException(HttpExchange exchange, Throwable e) throws IOException {
+
+		e.printStackTrace();
+
+		String report = Util.errorReport(new Exception("Internal server exception " + e.getMessage()));
+
+		Util.writeResponse(exchange, 500, report);
+	}
+
+	void jsonDataException(HttpExchange exchange, JsonDataException e) throws IOException {
+
+		String report = Util.errorReport(e);
+		Util.writeResponse(exchange, 400, report);
+	}
 }

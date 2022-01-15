@@ -63,7 +63,6 @@ public class ImplUtil {
 
 			double quantity = Util.objectToValue(quantifiers, value);
 
-
 			Annotation[] annotations = field.getAnnotations();
 
 			for (Annotation annotation : annotations) {
@@ -82,8 +81,7 @@ public class ImplUtil {
 			for (Rule rule : ((Collection<Rule>) rules.values())) {
 
 				boolean follows = rule.followsMissing(field, request, name, quantity);
-				System.out.println(follows);
-				System.out.println(quantity);
+
 				if (!follows) {
 					rule.throwExceptionMissing(field, request, name, quantity);
 				}

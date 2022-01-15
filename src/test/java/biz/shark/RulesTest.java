@@ -48,7 +48,7 @@ public class RulesTest {
 	public void passValues() throws IllegalArgumentException, IllegalAccessException {
 
 		TestRequest request = new TestRequest();
-		
+
 		ImplUtil.checkRules(Map.of(Values.class, ValueRule.create()), List.of(new NumberQuantifier()), request);
 	}
 
@@ -59,6 +59,5 @@ public class RulesTest {
 
 		ImplUtil.checkRules(Map.of(Values.class, ValueRule.create()), List.of(new NumberQuantifier()), request);
 	}
-	
-	
+
 }
