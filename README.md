@@ -26,8 +26,7 @@ My name is Tyler Frydenlund. Im 19 from Thornton, Colorado and I have been a Sof
 
 This repo demonstrates my cababilities as a front and backend web engineer. This "website" is an application called ["Shark Business" or "Shark Biz"](https://www.youtube.com/watch?v=oSuCu6vquno). Where the user can add employee's via a webpage. The webpage made in HTML 5, Javascript, and CSS will then interact with the back end Microservice. The microservice will handle the REST API request and add a new employee to the system.
 
-The way this project is laied out with an "API" package containing documented Java Interfaces. This are used by the "IMPL" and "APP" packages where logic and functionality occurs in class files. 
-
-"APP" is designed to handle higher level tasks such as connecting the the Mongo DB and performing Service logic. 
-
-Whereas "IMPL" is designed to process the incoming requests to act as a gate keeper to "APP" class files. 
+- [My Java API code](https://github.com/TylerFrydenlund/portfolio/tree/master/src/main/java/biz/shark/api)
+- [Low level backend Microservice code](https://github.com/TylerFrydenlund/portfolio/tree/master/src/main/java/biz/shark/impl)
+- [High level Microservice code](https://github.com/TylerFrydenlund/portfolio/tree/master/src/main/java/biz/shark/app)
+- [How I use Test Driven Development and Continuous Integration](https://github.com/TylerFrydenlund/portfolio/tree/master/src/test/java/biz/shark)
