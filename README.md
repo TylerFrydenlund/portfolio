@@ -28,5 +28,5 @@ This repo demonstrates my cababilities as a front and backend web engineer. This
 
 - [My Java API code](https://github.com/TylerFrydenlund/portfolio/tree/master/src/main/java/biz/shark/api)
 - [Low level backend Microservice code](https://github.com/TylerFrydenlund/portfolio/tree/master/src/main/java/biz/shark/impl)
-- [High level Microservice code](https://github.com/TylerFrydenlund/portfolio/tree/master/src/main/java/biz/shark/app)
+- [High level backend Microservice code](https://github.com/TylerFrydenlund/portfolio/tree/master/src/main/java/biz/shark/app)
 - [How I use Test Driven Development and Continuous Integration](https://github.com/TylerFrydenlund/portfolio/tree/master/src/test/java/biz/shark)
