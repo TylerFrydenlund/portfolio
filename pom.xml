@@ -4,7 +4,7 @@
 	<artifactId>shark-biz</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>shark-biz</name>
-	<description>Buissness is like sharks. The big shark eats the little shark, then the little shark eats the littler shark all the way down until the single cell shark.</description>
+	<description>Buissness is like sharks. The big shark eats the little shark, then the little shark eats the littler shark all the way down until the single cell shark. Now replace sharks with buissneses and thats all you need to know about buissness</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
