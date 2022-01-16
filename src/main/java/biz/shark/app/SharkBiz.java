@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import biz.shark.api.Handler;
 import biz.shark.api.Microservice;
+import biz.shark.app.employee.handlers.EmployeeDelete;
 import biz.shark.app.employee.handlers.EmployeeGet;
 import biz.shark.app.employee.handlers.EmployeePut;
 
@@ -40,7 +41,7 @@ public class SharkBiz implements Microservice {
 
 	@Override
 	public List<Handler<?, ?>> handlers() {
-		return List.of(new EmployeePut(), new EmployeeGet());
+		return List.of(new EmployeePut(), new EmployeeGet(), new EmployeeDelete());
 	}
 
 }

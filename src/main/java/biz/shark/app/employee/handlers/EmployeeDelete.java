@@ -1,17 +1,25 @@
 package biz.shark.app.employee.handlers;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.List;
 
+import org.bson.BsonDocument;
+import org.bson.BsonInt32;
+import org.bson.Document;
+
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.sun.net.httpserver.HttpExchange;
 
 import biz.shark.api.Handler;
 import biz.shark.api.HttpMethod;
 import biz.shark.api.Quantifier;
-import biz.shark.api.rule.Rule;
-import biz.shark.app.employee.handlers.results.DeleteResult;
+import biz.shark.app.AppUtil;
+import biz.shark.app.employee.DeleteEmployee;
 
-public class EmployeeDelete implements Handler<Integer, DeleteResult> {
+public class EmployeeDelete implements Handler<DeleteEmployee, DeleteResult> {
 
 	@Override
 	public String path() {
@@ -24,12 +32,12 @@ public class EmployeeDelete implements Handler<Integer, DeleteResult> {
 	}
 
 	@Override
-	public Class<? extends Integer> requestAdapter() {
-		return Integer.class;
+	public Type requestAdapter() {
+		return DeleteEmployee.class;
 	}
 
 	@Override
-	public Class<? extends DeleteResult> responseAdapter() {
+	public Type responseAdapter() {
 		return DeleteResult.class;
 	}
 
@@ -44,30 +52,22 @@ public class EmployeeDelete implements Handler<Integer, DeleteResult> {
 	}
 
 	@Override
-	public List<Rule<?>> rules() {
-		return List.of();
-	}
+	public DeleteResult handle(HttpExchange exchange, DeleteEmployee employee) throws IOException {
 
-	@Override
-	public DeleteResult handle(HttpExchange exchange, Integer employee) throws IOException {
+		MongoClient client = AppUtil.dbClient();
+		try {
+			MongoDatabase database = client.getDatabase("sharkbiz");
 
-		if (!find(employee)) {
-			return DeleteResult.NOT_FOUND;
+			MongoCollection<Document> collection = database.getCollection("employees");
+
+			BsonDocument filter = new BsonDocument();
+
+			filter.append("id", new BsonInt32(employee.id));
+
+			return collection.deleteOne(filter).wasAcknowledged() ? DeleteResult.SUCESS : DeleteResult.NOT_FOUND;
+		} finally {
+			client.close();
 		}
-
-		if (remove(employee)) {
-			return DeleteResult.SUCESS;
-		}
-
-		return DeleteResult.FAIL;
-	}
-
-	boolean find(Integer employee) {
-		return false;
-	}
-
-	boolean remove(Integer employee) {
-		return false;
 	}
 
 }

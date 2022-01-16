@@ -1,11 +1,10 @@
 package biz.shark.api;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.List;
 
 import com.sun.net.httpserver.HttpExchange;
-
-import biz.shark.api.rule.Rule;
 
 /**
  * A microservice handler used for processing requests
@@ -36,13 +35,13 @@ public interface Handler<I, O> {
 	 * 
 	 * @return The class used to serialize incoming json messages
 	 */
-	Class<? extends I> requestAdapter();
+	Type requestAdapter();
 
 	/**
 	 * 
 	 * @return The class used to deserialize outgoing json messages
 	 */
-	Class<? extends O> responseAdapter();
+	Type responseAdapter();
 
 	/**
 	 * 
@@ -56,11 +55,6 @@ public interface Handler<I, O> {
 	 */
 	List<Quantifier> quantifiers();
 
-	/**
-	 * 
-	 * @return A list of additional rules to follow for fields
-	 */
-	List<Rule<?>> rules();
 
 	/**
 	 * Called when incoming messages are received. The returned value will be sent to the client in JSON format

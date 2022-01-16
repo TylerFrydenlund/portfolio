@@ -13,7 +13,6 @@ import java.util.logging.Logger;
 
 import javax.net.ssl.SSLException;
 
-import org.apache.commons.lang3.Range;
 import org.apache.commons.lang3.Validate;
 import org.json.JSONObject;
 import org.yaml.snakeyaml.DumperOptions;
@@ -26,7 +25,6 @@ import com.sun.net.httpserver.HttpExchange;
 import biz.shark.api.Handler;
 import biz.shark.api.Microservice;
 import biz.shark.api.Quantifier;
-import biz.shark.api.rule.limit.Limit;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.SelfSignedCertificate;
@@ -112,8 +110,8 @@ public class Util {
 
 		JSONObject json = new JSONObject();
 
-		json.put("errorType", t.getClass().getSimpleName());
-		json.put("error", t.getMessage());
+		json.put("error", t.getClass().getSimpleName());
+		json.put("message", t.getMessage());
 
 		return json.toString();
 
@@ -125,15 +123,6 @@ public class Util {
 		OutputStream stream = exchange.getResponseBody();
 		exchange.sendResponseHeaders(code, message.length());
 		stream.write(bytes);
-
-	}
-
-	public static Range<Double> toRange(Limit limit) {
-
-		double lower = Math.min(limit.min(), limit.max());
-		double upper = Math.max(limit.min(), limit.max());
-
-		return Range.between(lower, upper);
 
 	}
 

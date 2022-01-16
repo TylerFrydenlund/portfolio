@@ -27,7 +27,6 @@ public class Main implements Runnable {
 	 */
 
 	public static void main(String[] args) throws IOException {
-
 		logStart();
 
 		LOGGER.info("Adding shut downhook");

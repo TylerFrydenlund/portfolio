@@ -13,6 +13,7 @@ public final class NumberQuantifier implements Quantifier {
 
 	@Override
 	public boolean isType(Object object) {
+
 		return object instanceof Number;
 	}
 

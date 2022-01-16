@@ -1,4 +1,4 @@
-package biz.shark.app.employee.handlers.results;
+package biz.shark.app.employee.handlers;
 
 /**
  * A result set for Employee Method "Put"
