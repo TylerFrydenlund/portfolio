@@ -56,9 +56,11 @@
 		<!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
 		<dependency>
 			<groupId>org.mongodb</groupId>
-			<artifactId>mongodb-driver-legacy</artifactId>
-			<version>4.1.0</version>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>3.12.10</version>
 		</dependency>
+
+
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>

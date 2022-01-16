@@ -8,6 +8,14 @@ import java.lang.annotation.Target;
 
 @Retention(RUNTIME)
 @Target(FIELD)
+
+/**
+ * A rule used on fields to mark accepted values much like an enum
+ * 
+ * @see ValueRule
+ * @author Tyler Frydenlund
+ *
+ */
 public @interface Values {
 	double[] values();
 }

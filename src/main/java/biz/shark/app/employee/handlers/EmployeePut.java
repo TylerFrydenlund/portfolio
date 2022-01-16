@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.bson.Document;
 
-import com.mongodb.client.ClientSession;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -17,14 +16,11 @@ import biz.shark.api.Handler;
 import biz.shark.api.HttpMethod;
 import biz.shark.api.Quantifier;
 import biz.shark.api.rule.Rule;
-import biz.shark.app.MongoUtil;
+import biz.shark.app.AppUtil;
 import biz.shark.app.employee.NewEmployee;
+import biz.shark.app.employee.handlers.results.PutResult;
 
-public class EmployeePut implements Handler<NewEmployee, biz.shark.app.employee.handlers.EmployeePut.Result> {
-
-	enum Result {
-		SUCESS, ALREADY_EXISTS, FAILED;
-	}
+public class EmployeePut implements Handler<NewEmployee, PutResult> {
 
 	@Override
 	public String path() {
@@ -42,8 +38,8 @@ public class EmployeePut implements Handler<NewEmployee, biz.shark.app.employee.
 	}
 
 	@Override
-	public Class<? extends Result> responseAdapter() {
-		return Result.class;
+	public Class<? extends PutResult> responseAdapter() {
+		return PutResult.class;
 	}
 
 	@Override
@@ -62,17 +58,17 @@ public class EmployeePut implements Handler<NewEmployee, biz.shark.app.employee.
 	}
 
 	@Override
-	public Result handle(HttpExchange exchange, NewEmployee employee) throws IOException {
+	public PutResult handle(HttpExchange exchange, NewEmployee employee) throws IOException {
 
 		if (inDatabase(employee)) {
-			return Result.ALREADY_EXISTS;
+			return PutResult.ALREADY_EXISTS;
 		}
 
 		if (addToDatabase(employee)) {
-			return Result.SUCESS;
+			return PutResult.SUCESS;
 		}
 
-		return Result.FAILED;
+		return PutResult.FAILED;
 	}
 
 	Document toDoc(NewEmployee employee) {
@@ -90,44 +86,31 @@ public class EmployeePut implements Handler<NewEmployee, biz.shark.app.employee.
 
 	boolean inDatabase(NewEmployee employee) {
 
-		MongoClient client = MongoUtil.client();
-		ClientSession session = client.startSession();
+		MongoClient client = AppUtil.dbClient();
 
-		try {
+		MongoDatabase database = client.getDatabase("sharkbiz");
 
-			MongoDatabase database = client.getDatabase("sharkbiz");
+		MongoCollection<Document> collection = database.getCollection("employees");
 
-			MongoCollection<Document> collection = database.getCollection("employees");
+		Document doc = toDoc(employee);
 
-			Document doc = toDoc(employee);
-
-			return collection.find(doc).iterator().hasNext();
-		} finally {
-			session.close();
-		}
+		return collection.find(doc).iterator().hasNext();
 
 	}
 
 	boolean addToDatabase(NewEmployee employee) {
 
-		MongoClient client = MongoUtil.client();
-		ClientSession session = client.startSession();
-		try {
+		MongoClient client = AppUtil.dbClient();
 
-			MongoDatabase database = client.getDatabase("sharkbiz");
+		MongoDatabase database = client.getDatabase("sharkbiz");
 
-			MongoCollection<Document> collection = database.getCollection("employees");
+		MongoCollection<Document> collection = database.getCollection("employees");
 
-			Document doc = toDoc(employee);
+		Document doc = toDoc(employee);
 
-			return collection.insertOne(doc).getInsertedId() != null;
-		} catch (Exception e) {
-			e.printStackTrace();
+		collection.insertOne(doc);
+		return true;
 
-		} finally {
-			session.close();
-		}
-		return false;
 	}
 
 }

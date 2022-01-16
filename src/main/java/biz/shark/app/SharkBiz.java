@@ -9,7 +9,14 @@ import biz.shark.api.Microservice;
 import biz.shark.app.employee.handlers.EmployeeGet;
 import biz.shark.app.employee.handlers.EmployeePut;
 
+/**
+ * The important system information of this demo app.
+ * 
+ * @author Tyler Frydenlund
+ *
+ */
 public class SharkBiz implements Microservice {
+
 	private final int port;
 
 	public SharkBiz(int port) {
@@ -18,12 +25,12 @@ public class SharkBiz implements Microservice {
 
 	@Override
 	public String name() {
-		return "shark-biz";
+		return "Shark Biz";
 	}
 
 	@Override
 	public Logger logger() {
-		return Logger.getLogger("Shark Biz");
+		return Logger.getLogger(name());
 	}
 
 	@Override

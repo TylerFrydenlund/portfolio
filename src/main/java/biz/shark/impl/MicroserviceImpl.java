@@ -37,6 +37,7 @@ public final class MicroserviceImpl implements Microservice {
 
 	private final String name;
 	private final Logger logger;
+	
 	// The defaults in for the config
 	private final Map<String, Object> defaults;
 	private final List<Handler<?, ?>> handlers;

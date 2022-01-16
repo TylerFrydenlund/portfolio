@@ -1,5 +1,13 @@
 package biz.shark.exceptions;
 
+/**
+ * This exception is thrown when the system fails to provided a message
+ * describing what went wrong. It will help tell the user it is a server side
+ * issue.
+ * 
+ * @author Tyler Frydenlund
+ *
+ */
 public class MessageProviderException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;

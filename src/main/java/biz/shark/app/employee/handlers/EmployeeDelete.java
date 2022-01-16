@@ -9,13 +9,9 @@ import biz.shark.api.Handler;
 import biz.shark.api.HttpMethod;
 import biz.shark.api.Quantifier;
 import biz.shark.api.rule.Rule;
-import biz.shark.app.employee.handlers.EmployeeDelete.Result;
+import biz.shark.app.employee.handlers.results.DeleteResult;
 
-public class EmployeeDelete implements Handler<Integer, Result> {
-
-	enum Result {
-		NOT_FOUND, SUCESS, FAIL;
-	}
+public class EmployeeDelete implements Handler<Integer, DeleteResult> {
 
 	@Override
 	public String path() {
@@ -33,8 +29,8 @@ public class EmployeeDelete implements Handler<Integer, Result> {
 	}
 
 	@Override
-	public Class<? extends Result> responseAdapter() {
-		return Result.class;
+	public Class<? extends DeleteResult> responseAdapter() {
+		return DeleteResult.class;
 	}
 
 	@Override
@@ -53,17 +49,17 @@ public class EmployeeDelete implements Handler<Integer, Result> {
 	}
 
 	@Override
-	public Result handle(HttpExchange exchange, Integer employee) throws IOException {
+	public DeleteResult handle(HttpExchange exchange, Integer employee) throws IOException {
 
 		if (!find(employee)) {
-			return Result.NOT_FOUND;
+			return DeleteResult.NOT_FOUND;
 		}
 
 		if (remove(employee)) {
-			return Result.SUCESS;
+			return DeleteResult.SUCESS;
 		}
 
-		return Result.FAIL;
+		return DeleteResult.FAIL;
 	}
 
 	boolean find(Integer employee) {

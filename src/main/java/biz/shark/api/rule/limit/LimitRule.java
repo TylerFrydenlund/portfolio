@@ -10,6 +10,13 @@ import biz.shark.Util;
 import biz.shark.api.rule.Remove;
 import biz.shark.api.rule.Rule;
 
+/**
+ * The Limit rule restricts the bounds of a fields qunatative value
+ * 
+ * @see Limit
+ * @author Tyler Frydenlund
+ * 
+ **/
 public final class LimitRule implements Rule<Limit> {
 
 	public static LimitRule create() {

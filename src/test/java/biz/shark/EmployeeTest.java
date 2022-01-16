@@ -13,6 +13,7 @@ import com.squareup.moshi.Moshi;
 import biz.shark.app.Position;
 import biz.shark.app.SharkBiz;
 import biz.shark.app.employee.NewEmployee;
+import biz.shark.app.employee.handlers.results.PutResult;
 import biz.shark.impl.MicroserviceImpl;
 import jodd.http.HttpRequest;
 import jodd.http.HttpResponse;
@@ -36,7 +37,7 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void put() {
+	public void put() throws IOException {
 
 		NewEmployee employee = new NewEmployee("Tyler", "Frydenlund", Position.DEV, "red");
 
@@ -49,6 +50,12 @@ public class EmployeeTest {
 		request.body(json);
 
 		HttpResponse response = request.send();
+
+		JsonAdapter<PutResult> a = moshi.adapter(PutResult.class);
+
+		PutResult result = a.fromJson(response.body());
+
+		Assert.assertEquals(result, PutResult.ALREADY_EXISTS);
 
 		Assert.assertEquals(response.body(), 200, response.statusCode());
 

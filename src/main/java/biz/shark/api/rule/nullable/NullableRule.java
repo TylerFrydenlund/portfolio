@@ -7,6 +7,12 @@ import com.squareup.moshi.JsonDataException;
 import biz.shark.api.rule.Remove;
 import biz.shark.api.rule.Rule;
 
+/**
+ * The Nullable rule is a rule that allows fields to be null or optional
+ * 
+ * @author Tyler Frydenlund
+ *
+ */
 public final class NullableRule implements Rule<Nullable> {
 
 	public static NullableRule create() {

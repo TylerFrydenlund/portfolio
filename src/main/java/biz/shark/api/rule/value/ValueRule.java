@@ -8,6 +8,15 @@ import com.squareup.moshi.JsonDataException;
 import biz.shark.api.rule.Remove;
 import biz.shark.api.rule.Rule;
 
+/**
+ * The value rule is a rule that acts identical to an Enumerator (enum) where
+ * fields can be marked with an The "Values" annotation. Marked fields will only
+ * accept the provided quantative values
+ * 
+ * @see Values
+ * @author Tyler Frydenlund
+ *
+ */
 public class ValueRule implements Rule<Values> {
 
 	public static ValueRule create() {

@@ -1,5 +1,11 @@
 package biz.shark.exceptions;
 
+/**
+ * This exception is thrown when a rule is not followed
+ * 
+ * @author Tyler Frydenlund
+ *
+ */
 public class RuleFollowException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
