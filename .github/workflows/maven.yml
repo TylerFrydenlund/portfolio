@@ -27,5 +27,4 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Deploy Docker Image
-      run: mvn clean deploy -Ddocker.user=<username> -Ddocker.password=<passwd> 
--Ddocker.url=<docker-registry-url>
+      run: mvn clean deploy -Ddocker.user=<username> -Ddocker.password=<passwd> -Ddocker.url=<docker-registry-url>
