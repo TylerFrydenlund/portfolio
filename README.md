@@ -2,10 +2,10 @@
 My name is Tyler Frydenlund. Im 19 from Thornton, Colorado and I have been a Softwear Engineer since 2015. This is my resume. This repository demonstrates some (but not all) of the technologies, practices, and concepts I am familiar with as a software engineer. Feel free to browse through the repository, or click some of the links below to be taken to some specific samples within the Repo of the work I do.
 
 ## Development practices I use or have used
-- Continuous Integration
-- Continuous Delivery
-- Test Driven Development
-- Agile Development
+- [Continuous Integration](https://aws.amazon.com/devops/continuous-integration/#:~:text=Continuous%20integration%20is%20a%20DevOps,builds%20and%20tests%20are%20run.)
+- [Continuous Delivery](https://aws.amazon.com/devops/continuous-delivery/)
+- [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development)
+- [Agile Development](https://en.wikipedia.org/wiki/Agile_software_development)
 
 ## Familar technologies
 - [Java](https://www.java.com/en/download/help/whatis_java.html) (Since 2015)
