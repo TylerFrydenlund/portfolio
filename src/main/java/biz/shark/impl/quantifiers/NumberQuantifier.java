@@ -3,7 +3,7 @@ package biz.shark.impl.quantifiers;
 import biz.shark.api.Quantifier;
 
 /**
- * A way to quantify any numerical value in order to restrict the max JSON
+ * A way to quantify any numerical value in order to restrict the max/min JSON
  * Number value to be accepted by the system
  * 
  * @author Tyler Frydenlund
