@@ -24,7 +24,7 @@ My name is Tyler Frydenlund. Im 19 from Thornton, Colorado and I have been a Sof
 
 ## About this Portfolio Repo
 
-This repo demonstrates my cababilities as a front and backend web engineer. This "website" is an application called ["Shark Business" or "Shark Biz"](https://www.youtube.com/watch?v=oSuCu6vquno). Where the user can add employee's via a webpage. The webpage made in HTML 5, Javascript, and CSS will then interact with the back end Microservice. The microservice will handle the REST API request and add a new employee to the system.
+This repo demonstrates my cababilities as a front and backend web engineer. This "website" is an application called ["Shark Business" or "Shark Biz"](https://www.youtube.com/watch?v=oSuCu6vquno). Where the user can manage employees via a webpage. The webpage is made in HTML 5, Javascript, and CSS will then interact with the back end Microservice. The microservice will handle the REST API request and interface with a Mongo Database.
 
 - [API backend Microservice code](https://github.com/TylerFrydenlund/portfolio/tree/master/src/main/java/biz/shark/api)
 - [Low level backend Microservice code](https://github.com/TylerFrydenlund/portfolio/tree/master/src/main/java/biz/shark/impl)
