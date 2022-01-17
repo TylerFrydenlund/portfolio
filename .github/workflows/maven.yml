@@ -24,6 +24,7 @@ jobs:
         cache: maven
     - name: Test with Maven
       run: mvn -B test --file pom.xml 
+      
   Build:
     needs: Test
     runs-on: ubuntu-latest
@@ -38,6 +39,28 @@ jobs:
         cache: maven
     - name: Test with Maven
       run: mvn -B package --file pom.xml 
+    - name: Bump Version
+      id: tag_version
+      uses: mathieudutour/github-tag-action@v6.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Create Git Release
+      uses: ncipollo/release-action@v1
+      id: create_release
+      with:
+        tag: ${{ steps.tag_version.outputs.new_tag }}
+        name: ${{ steps.tag_version.outputs.new_tag }}
+        body: ${{ steps.tag_version.outputs.changelog }}
+        
+    - name: Git Release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./target/shark-biz.jar
+        asset_name: sharkbiz-${{ steps.tag_version.outputs.new_tag }}.jar
+        asset_content_type: application/jar        
   Deploy:
     needs: Build
     runs-on: ubuntu-latest
@@ -51,4 +74,4 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Deploy Docker Image
-      run: mvn clean deploy -Ddocker.user=<username> -Ddocker.password=<passwd> -Ddocker.url=<docker-registry-url>
+      run: mvn clean deploy -Ddocker.user=${{secrets.docker_username}} -Ddocker.password=${{secrets.docker_password}} -Ddocker.url=${{secrets.docker_url}}
