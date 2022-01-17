@@ -120,7 +120,7 @@
 					<!-- Remove existing image from local repo -->
 					<execution>
 						<id>docker-clean</id>
-						<phase>deploy</phase>
+						<phase>build</phase>
 						<goals>
 							<goal>exec</goal>
 						</goals>
@@ -137,7 +137,7 @@
 
 					<execution>
 						<id>docker-build</id>
-						<phase>deploy</phase>
+						<phase>build</phase>
 						<goals>
 							<goal>exec</goal>
 						</goals>
@@ -158,7 +158,7 @@
 
 					<execution>
 						<id>docker-login</id>
-						<phase>deploy</phase>
+						<phase>build</phase>
 						<goals>
 							<goal>exec</goal>
 						</goals>
@@ -179,7 +179,7 @@
 
 					<execution>
 						<id>docker-push</id>
-						<phase>deploy</phase>
+						<phase>build</phase>
 						<goals>
 							<goal>exec</goal>
 						</goals>
