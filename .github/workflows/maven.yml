@@ -25,7 +25,7 @@ jobs:
     - name: Test with Maven
       run: mvn -B test --file pom.xml 
       
-  Build & Deploy:
+  Build-And-Deploy:
     needs: Test
     runs-on: ubuntu-latest
 
