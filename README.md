@@ -27,10 +27,10 @@ My name is Tyler Frydenlund. Im 19 from Thornton, Colorado and I have been a Sof
 
 ## About this Portfolio Repo
 
-This repo demonstrates my cababilities as a backend web engineer. This "website" is an application called ["Shark Business" or "Shark Biz"](https://www.youtube.com/watch?v=oSuCu6vquno). Where the user can manage employees via a REST API. The microservice will handle the REST API request and interface with a Mongo Database to store employee data. See the [wiki](https://github.com/TylerFrydenlund/portfolio/wiki) for documentation.
+This repo demonstrates my cababilities as a backend web engineer. This "website" is an application called ["Shark Business" or "Shark Biz"](https://www.youtube.com/watch?v=oSuCu6vquno). Where the user can manage employees via a REST API. The microservice will handle the REST API request and interface with a Mongo Database to manage employee data. See the [wiki](https://github.com/TylerFrydenlund/portfolio/wiki) for documentation.
 
 - [API backend Microservice code](https://github.com/TylerFrydenlund/portfolio/tree/master/src/main/java/biz/shark/api)
 - [Low level backend Microservice code](https://github.com/TylerFrydenlund/portfolio/tree/master/src/main/java/biz/shark/impl)
 - [High level backend Microservice code](https://github.com/TylerFrydenlund/portfolio/tree/master/src/main/java/biz/shark/app)
 - [How I use Test Driven Development](https://github.com/TylerFrydenlund/portfolio/tree/master/src/test/java/biz/shark)
-- [How I use Continuous Integration](https://github.com/TylerFrydenlund/portfolio/actions/)
+- [How I use Continuous Integration](https://github.com/TylerFrydenlund/portfolio/tree/master/.github/workflows)
