@@ -1,4 +1,6 @@
 [![Java & Maven CI](https://github.com/TylerFrydenlund/portfolio/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/TylerFrydenlund/portfolio/actions/workflows/maven.yml)
+
+**[Resume](https://docs.google.com/document/d/1kDD3PdcIdELcKxixdctUTwCR6TnxCPlzudSfcCS7EB0/edit#heading=h.7vtcyzeczjot)**
 # Portfolio
 My name is Tyler Frydenlund. Im 19 from Thornton, Colorado and I have been a Softwear Engineer since 2015. This is my resume. This repository demonstrates some (but not all) of the technologies, practices, and concepts I am familiar with as a software engineer. Feel free to browse through the repository, or click some of the links below to be taken to some specific samples within the Repo of the work I do.
 
